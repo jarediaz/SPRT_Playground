@@ -14,8 +14,6 @@ var shuffleSequence = seq("consent", "demo", "IDentry", "intro",
                 );
 
 newTrial("IDentry",
-    newVar("partID").global()
-    ,
     newText("instr", "Please enter your Prolific ID:").print()
     ,
     newHtml("partpage", "<input type='text' id='partID' name='participant ID' min='1' max='120'>").print()
@@ -24,7 +22,6 @@ newTrial("IDentry",
         getVar("partID").set( v=>$("#partID").val() ).testNot.is('')
     )
 )
-.log("partID", getVar("partID"))
 
 
 Header(
