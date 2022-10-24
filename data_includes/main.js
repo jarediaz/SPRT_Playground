@@ -22,6 +22,53 @@ newTrial("IDentry",
        getVar("partID").set( v=>$("#partID").val() ).testNot.is('')
    )
 )
+
+newTrial("intro",
+
+    newHtml("introhtml", "intro1.html")
+        .print(),
+    
+    newText("What key do you press to read the sentence")
+        .print()
+        .bold()
+    ,
+    newScale("q1", "Spacebar", "J")
+        .labelsPosition("right")
+        .print()
+    ,
+    newText("How should you read the sentence")
+        .print()
+        .bold()
+    ,
+    newScale("q2", "Out loud", "Silently")
+        .labelsPosition("right")
+        .print()
+    ,
+    newText("Will the entire sentence stay on the screen?")
+        .print()
+        .bold()
+    ,
+    newScale("q3", "No", "Yes")
+        .labelsPosition("right")
+        .print()
+    ,
+    newText("error", "One or more of your responses to the questions above are incorrect")
+        .color("red")
+        .bold()
+    ,
+    newButton("Continue")
+        .print()
+        .wait(
+            getScale("q1").test.selected("Spacebar").failure(
+                getText("error").print()
+            ).and(getScale("q2").test.selected("Silently").failure(
+                getText("error").print()
+            )).and(getScale("q3").test.selected("No").failure(
+                getText("error").print()
+            ))
+        )
+)
+
  
  
 Header(
@@ -87,8 +134,7 @@ var items = [
  
  
  
- 
-["intro", "Form", { html: { include: "intro1.html" } } ],
+
  
  
 ["startpractice", Message, {consentRequired: false,
@@ -109,5 +155,8 @@ var items = [
  
 ["completion", "Form", {continueMessage: null, html: { include: "completion.html" } } ]
  
- 
 ];
+
+
+
+

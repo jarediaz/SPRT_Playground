@@ -54,3 +54,7 @@ span.retry:visited {
     text-align: left;
     list-style-type: none;
 }
+
+.PennController-Scale .option {
+    margin: 1em 1em;
+}
